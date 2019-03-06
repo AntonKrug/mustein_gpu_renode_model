@@ -74,9 +74,9 @@ namespace Antmicro.Renode.Peripherals.Video {
             describedFbSegments[0] = new MusteinSegment(this, frameBufferSize);
 
             this.NoisyLog("Allocate memory {0} bytes big with aligment margin of {1}. Together it's {2} bytes.", frameBufferSize, alignment, frameBufferSize + alignment);
-            var allocSeg = Marshal.AllocHGlobal(this.frameBufferSize + alignment);
-            var originalPointer = (long)allocSeg;
-            var alignedPointer = (IntPtr)((originalPointer + alignment) & ~(alignment - 1));
+            var allocSeg              = Marshal.AllocHGlobal(this.frameBufferSize + alignment);
+            var originalPointer       = (long)allocSeg;
+            var alignedPointer        = (IntPtr)((originalPointer + alignment) & ~(alignment - 1));
             musteinFramebufferSegment = alignedPointer;
             this.NoisyLog(string.Format("FB alloc @ 0x{0:X} (aligned to 0x{1:X}, even after aligment there is at least 0x{2:X} bytes avaiable).", allocSeg.ToInt64(), alignedPointer.ToInt64(), frameBufferSize));
 
