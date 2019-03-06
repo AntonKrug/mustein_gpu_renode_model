@@ -82,7 +82,7 @@ namespace Antmicro.Renode.Peripherals.Video {
             this.NoisyLog(string.Format("FB alloc @ 0x{0:X} (aligned to 0x{1:X}, even after aligment there is at least 0x{2:X} bytes avaiable).", allocSeg.ToInt64(), alignedPointer.ToInt64(), frameBufferSize));
 
             // Populate the buffer with zeros, on bigger buffers and slower perfomance, use the memSet DLLimport.
-            // https://stackoverflow.com/questions/1897555/what-is-the-equivalent-of-memset-in-c/2518800
+            // https://stackoverflow.com/questions/1897555
             for (int index = 0; index < this.frameBufferSize; index++) {
                 Marshal.WriteByte(alignedPointer + index, 0);
             }
