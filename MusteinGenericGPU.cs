@@ -43,7 +43,8 @@ namespace Antmicro.Renode.Peripherals.Video {
 
             // Populating lookup table for the 8bit color mode to 24bit conversion, because the 332 format is unbalanced so 
             // much and the Red/Green have 50% more bits than Blue the value 0xFF has a yellow tint. Balanced white (gray) 
-            // color is actually value 0xF6.
+            // color is actually value 0xF6. The white color is fairly gray because the discarted least significant bits
+            // still acumulate to a 1/4 of the total brightness/value (we are cutting away too many bits).
             colorTable = new uint[256];
             for (uint index = 0; index < 256; index++) {
                 uint blue  = (index & 0xc0) >> 6; 
